@@ -1,0 +1,35 @@
+class Weapon:
+    def __init__(self, damage, modifier):
+        self.damage = damage
+        self._modifier = modifier
+    
+    def __apply_modifier(self):
+        return self.damage * self._modifier
+    
+    def get_final_damage(self):
+        return self.__apply_modifier()
+
+w = Weapon(10, 2)
+print(w.get_final_damage())  # 20
+
+
+
+class GameBank:
+    def __init__(self, balance):
+        self._balance = balance
+    
+    def __log_transaction(self, msg):
+        print(f"Лог: {msg}")
+    
+    def deposit(self, amount):
+        self._balance += amount
+        self.__log_transaction(f"+{amount}")
+    
+    def withdraw(self, amount):
+        if amount <= self._balance:
+            self._balance -= amount
+            self.__log_transaction(f"-{amount}")
+
+bank = GameBank(100)
+bank.deposit(50)   # Лог: +50
+bank.withdraw(30)  # Лог: -30
