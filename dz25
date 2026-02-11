@@ -1,0 +1,56 @@
+1) class Human:
+    def __init__(self):
+        self.fio = ""
+        self.birth = ""
+        self.phone = ""
+    
+    def input(self):
+        self.fio = input("ФИО: ")
+        self.birth = input("Дата рождения: ")
+        self.phone = input("Телефон: ")
+    
+    def output(self):
+        print(f"{self.fio}, {self.birth}, {self.phone}")
+
+
+2) class City:
+    def __init__(self):
+        self.name = ""
+        self.population = 0
+    
+    def input(self):
+        self.name = input("Город: ")
+        self.population = int(input("Население: "))
+    
+    def output(self):
+        print(f"{self.name}, {self.population} чел.")
+
+3) class Country:
+    def __init__(self):
+        self.name = ""
+        self.capital = ""
+    
+    def input(self):
+        self.name = input("Страна: ")
+        self.capital = input("Столица: ")
+    
+    def output(self):
+        print(f"{self.name}, столица {self.capital}")
+
+4) class Fraction:
+    def __init__(self, a=0, b=1):
+        self.a = a
+        self.b = b
+    
+    def input(self):
+        self.a = int(input("Числитель: "))
+        self.b = int(input("Знаменатель: "))
+    
+    def output(self):
+        print(f"{self.a}/{self.b}")
+    
+    def add(self, other):
+        return Fraction(self.a*other.b + other.a*self.b, self.b*other.b)
+    
+    def multiply(self, other):
+        return Fraction(self.a*other.a, self.b*other.b)
