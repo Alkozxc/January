@@ -1,0 +1,14 @@
+def find_max(lst):
+    if len(lst) == 1:
+        return lst[0]
+    return max(lst[0], find_max(lst[1:]))
+
+def partitions(n, start=1, current=[]):
+    if n == 0:
+        return [current[:]]
+    result = []
+    for i in range(start, n + 1):
+        current.append(i)
+        result += partitions(n - i, i, current)
+        current.pop()
+    return result
