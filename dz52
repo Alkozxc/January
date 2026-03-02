@@ -1,0 +1,73 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self.position = position
+    
+    def info(self):
+        return f"{self.name}, {self.age}, {self.position}"
+
+class Manager(Employee):
+    def __init__(self, name, age, position):
+        super().__init__(name, age, position)
+        self.team = []
+
+employees = []
+managers = []
+
+while True:
+    print("\n1. Добавить  2. В команду  3. Показать всех  4. Выход")
+    choice = input()
+    
+    if choice == "1":
+        name = input("Имя: ")
+        age = input("Возраст: ")
+        pos = input("Должность: ")
+        
+        if pos == "менеджер":
+            m = Manager(name, age, pos)
+            managers.append(m)
+            employees.append(m)
+        else:
+            employees.append(Employee(name, age, pos))
+        print("Добавлен!")
+    
+    elif choice == "2":
+        mgr_name = input("Имя менеджера: ")
+        emp_name = input("Имя сотрудника: ")
+        
+        manager = None
+        for m in managers:
+            if m.name == mgr_name:
+                manager = m
+                break
+        
+        if not manager:
+            print("Менеджер не найден!")
+            continue
+            
+        emp = None
+        for e in employees:
+            if e.name == emp_name:
+                emp = e
+                break
+        
+        if not emp:
+            print("Сотрудник не найден!")
+            continue
+            
+        manager.team.append(emp)
+        print("Добавлен в команду!")
+    
+    elif choice == "3":
+        for e in employees:
+            print(e.info())
+            if isinstance(e, Manager) and e.team:
+                print("  Команда: " + ", ".join([t.name for t in e.team]))
+    
+    elif choice == "4":
+        break
