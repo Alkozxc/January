@@ -1,0 +1,24 @@
+import telebot
+import datetime as dt
+
+bot = telebot.TeleBot('8785220992:AAE__Qx9SGTp0bWUJW6LWO4YL_ZfCBkt1VA')
+
+@bot.message_handler(commands=['start'])
+def send_message(message):
+    bot.send_message(message.chat.id, "Привет, я бот консультант.")
+
+@bot.message_handler(commands=['help'])
+def send_help(message):
+    text = "Команды:\n/start - приветствие\n/help - список команд\n/info - о боте\n/date - дата"
+    bot.send_message(message.chat.id, text)
+
+@bot.message_handler(commands=['info'])
+def send_info(message):
+    bot.send_message(message.chat.id, "Я простой бот консультант.")
+
+@bot.message_handler(commands=['date'])
+def send_date(message):
+    now = dt.datetime.now()
+    bot.send_message(message.chat.id, f"Дата: {now.day}.{now.month}.{now.year}")
+
+bot.infinity_polling()
